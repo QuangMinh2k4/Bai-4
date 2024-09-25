@@ -1,137 +1,76 @@
-import React from 'react';  
-import { StatusBar } from 'expo-status-bar';  
-import { StyleSheet, Text, View, FlatList } from 'react-native';  
-import Icon from 'react-native-vector-icons/FontAwesome';  
+import React, { useState } from "react";
+import { StatusBar } from "expo-status-bar";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-const notifications = [  
-  {  
-    id: '1',  
-    title: 'Bước 1 Xác định nhu cầu khách hàng',  
-    message: 'Vũ Văn Hoàng sắp đến hạn lúc 01/08/2020 9:00',  
-    date: '20/08/2020, 06:00',  
-    icon: 'check-circle',  
-    iconColor: '#4A90E2',  
-    backgroundColor: '#e8f4f8', // Light blue background  
-  },  
-  {  
-    id: '2',  
-    title: 'Bạn có khách hàng mới!',  
-    message: 'Chúc mừng bạn, bạn có khách hàng mới. Hãy mau chóng liên lạc ngay.',  
-    date: '20/08/2020, 06:00',  
-    icon: 'user-circle',  
-    iconColor: '#4A90E2',  
-    backgroundColor: '#f0f8ff', // Light background  
-  },  
-  {  
-    id: '3',  
-    title: 'Khách hàng được chia sẻ bị trùng',  
-    message: 'Rất tiếc, khách hàng được chia sẻ đã tồn tại trên hệ thống. Vui lòng chia sẻ khách hàng.',  
-    date: '20/08/2020, 06:00',  
-    icon: 'user-circle',  
-    iconColor: '#4A90E2',  
-    backgroundColor: '#f0f8ff',  
-  },  
-  {  
-    id: '4',  
-    title: 'Khách hàng được thêm bị trùng',  
-    message: 'Rất tiếc, khách hàng được thêm đã tồn tại trên hệ thống. Vui lòng thêm khách hàng khác.',  
-    date: '20/08/2020, 06:00',  
-    icon: 'user-circle',  
-    iconColor: '#4A90E2',  
-    backgroundColor: '#f0f8ff',  
-  },  
-  {  
-    id: '5',  
-    title: 'Công việc sắp đến hạn trong hôm nay',  
-    message: 'Bạn có 17 công việc sắp đến hạn trong hôm nay.',  
-    date: '20/08/2020, 06:00',  
-    icon: 'check-circle',  
-    iconColor: '#4A90E2',  
-    backgroundColor: '#e8f4f8',  
-  },  
-  {  
-    id: '6',  
-    title: 'Công việc đã quá hạn',  
-    message: 'Bạn có 17 công việc bị quá hạn. Hãy kiểm tra và lên kế hoạch hoàn thành công việc ngay.',  
-    date: '20/08/2020, 06:00',  
-    icon: 'check-circle',  
-    iconColor: '#4A90E2',  
-    backgroundColor: '#e8f4f8',  
-  },  
-];  
+export default function App() {
+  // State để lưu trữ màu nền của component cha (View)
+  const [backgroundColor, setBackgroundColor] = useState("green");
 
-export default function App() {  
-  const renderItem = ({ item }) => (  
-    <View style={[styles.notificationItem, { backgroundColor: item.backgroundColor }]}>  
-      <Icon name={item.icon} size={30} color={item.iconColor} style={styles.icon} />  
-      <View style={styles.textContainer}>  
-        <Text style={styles.title}>{item.title}</Text>  
-        <Text style={styles.message}>{item.message}</Text>  
-        <Text style={styles.date}>{item.date}</Text>  
-      </View>  
-    </View>  
-  );  
+  return (
+    <View style={[styles.container, { backgroundColor }]}>
+      {/* Nút màu xanh lá cây (GREEN) */}
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: "green" }]}
+        onPress={() => setBackgroundColor("green")}
+      >
+        <Text style={styles.buttonText}>GREEN</Text>
+      </TouchableOpacity>
 
-  return (  
-    <View style={styles.container}>  
-      <Text style={styles.header}>Thông báo</Text>  
-      <FlatList  
-        data={notifications}  
-        renderItem={renderItem}  
-        keyExtractor={(item) => item.id}  
-        style={styles.list}  
-      />  
-      <StatusBar style="auto" />  
-    </View>  
-  );  
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: "blue" }]}
+        onPress={() => setBackgroundColor("blue")}
+      >
+        <Text style={styles.buttonText}>BLUE</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: "brown" }]}
+        onPress={() => setBackgroundColor("brown")}
+      >
+        <Text style={styles.buttonText}>BROWN</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: "yellow" }]}
+        onPress={() => setBackgroundColor("yellow")}
+      >
+        <Text style={styles.buttonText}>YELLOW</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: "red" }]}
+        onPress={() => setBackgroundColor("red")}
+      >
+        <Text style={styles.buttonText}>RED</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity
+        style={[styles.button, { backgroundColor: "black" }]}
+        onPress={() => setBackgroundColor("black")}
+      >
+        <Text style={styles.buttonText}>BLACK</Text>
+      </TouchableOpacity>
+
+      <StatusBar style="auto" />
+    </View>
+  );
 }
-const styles = StyleSheet.create({  
-  container: {  
-    flex: 1,  
-    backgroundColor: '#f0f0f0',  
-    paddingTop: 40,  
-  },  
-  header: {  
-    fontSize: 18,  
-    fontWeight: 'bold',  
-    textAlign: 'center',  
-    marginBottom: 10,  
-    color: '#333',  
-  },  
-  list: {  
-    paddingHorizontal: 10,  
-  },  
-  notificationItem: {  
-    flexDirection: 'row',  
-    padding: 15,  
-    marginVertical: 5,  
-    borderRadius: 10,  
-    shadowColor: '#000',  
-    shadowOffset: { width: 0, height: 1 },  
-    shadowOpacity: 0.1,  
-    shadowRadius: 3,  
-    elevation: 2,  
-  },  
-  icon: {  
-    marginRight: 15,  
-    alignSelf: 'center',  
-  },  
-  textContainer: {  
-    flex: 1,  
-  },  
-  title: {  
-    fontWeight: 'bold',  
-    fontSize: 16,  
-    marginBottom: 5,  
-    color: '#333',  
-  },  
-  message: {  
-    fontSize: 14,  
-    color: '#555',  
-  },  
-  date: {  
-    fontSize: 12,  
-    color: '#999',  
-    marginTop: 5,  
-  },  
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  button: {
+    width: "80%",
+    padding: 20,
+    margin: 10,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "white",
+    fontSize: 18,
+  },
 });
